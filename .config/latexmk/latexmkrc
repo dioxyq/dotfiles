@@ -1,0 +1,3 @@
+$pdf_mode = 1;
+$aux_dir = ".aux";
+$clean_ext = "synctex.gz";

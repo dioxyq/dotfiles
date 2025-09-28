@@ -72,7 +72,10 @@ function open() {
 # aliases
 alias win="systemctl reboot --boot-loader-entry=auto-windows"
 alias o='open'
-alias la='ls -la'
+alias ls='eza'
+alias ll='eza -l'
+alias la='eza -la'
+alias ..='cd ..'
 
 
 # environment variables

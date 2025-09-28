@@ -1,0 +1,14 @@
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:module:git:alias' skip 'yes'
+
+zstyle ':prezto:load' pmodule \
+  'editor' \
+  'history' \
+  'spectrum' \
+  'git' \
+  'completion' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'autosuggestions' \
+  'prompt' 

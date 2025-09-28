@@ -1,0 +1,54 @@
+{
+  "bar.customModules.storage.paths": [
+    "/"
+  ],
+  "bar.workspaces.show_numbered": true,
+  "bar.layouts": {
+    "0": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
+      "right": [
+        "volume",
+        "network",
+        "bluetooth",
+        "systray",
+        "clock",
+        "notifications"
+      ]
+    },
+    "1": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
+      "right": [
+        "volume",
+        "network",
+        "bluetooth",
+        "systray",
+        "clock",
+        "notifications"
+      ]
+    }
+  },
+  "menus.clock.time.military": true,
+  "menus.clock.weather.location": "Sydney",
+  "menus.clock.weather.unit": "metric",
+  "bar.clock.format": "%a %b %d  %H:%M:%S",
+  "theme.bar.border.width": "0.15em",
+  "theme.bar.buttons.y_margins": "0.25em",
+  "theme.bar.buttons.padding_y": "0rem",
+  "bar.customModules.weather.unit": "metric",
+  "menus.clock.weather.key": "2994b29f07fb41e3b76130456251308",
+  "menus.clock.weather.interval": 600000
+}

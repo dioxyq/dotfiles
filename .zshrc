@@ -32,6 +32,7 @@ eval "$(pyenv virtualenv-init -)"
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 export FZF_DEFAULT_OPTS=""
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow"
 source <(fzf --zsh)

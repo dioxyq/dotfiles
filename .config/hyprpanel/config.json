@@ -2,7 +2,7 @@
   "bar.customModules.storage.paths": [
     "/"
   ],
-  "bar.workspaces.show_numbered": true,
+  "bar.workspaces.show_numbered": false,
   "bar.layouts": {
     "0": {
       "left": [
@@ -50,5 +50,13 @@
   "theme.bar.buttons.padding_y": "0rem",
   "bar.customModules.weather.unit": "metric",
   "menus.clock.weather.key": "2994b29f07fb41e3b76130456251308",
-  "menus.clock.weather.interval": 600000
+  "menus.clock.weather.interval": 600000,
+  "bar.workspaces.show_icons": false,
+  "bar.workspaces.showWsIcons": true,
+  "bar.workspaces.numbered_active_indicator": "underline",
+  "bar.workspaces.workspaceIconMap": {
+    "-1337": "󰊗"
+  },
+  "theme.font.name": "Symbols Nerd Font",
+  "theme.font.label": "Symbols Nerd Font"
 }

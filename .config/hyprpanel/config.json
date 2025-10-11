@@ -47,7 +47,7 @@
   "bar.clock.format": "%a %b %d  %H:%M:%S",
   "theme.bar.border.width": "0.15em",
   "theme.bar.buttons.y_margins": "0.24em",
-  "theme.bar.buttons.padding_y": "0.2rem",
+  "theme.bar.buttons.padding_y": "0rem",
   "bar.customModules.weather.unit": "metric",
   "menus.clock.weather.key": "2994b29f07fb41e3b76130456251308",
   "menus.clock.weather.interval": 600000,
@@ -458,5 +458,8 @@
   "menus.dashboard.shortcuts.right.shortcut1.icon": "",
   "menus.dashboard.shortcuts.left.shortcut4.icon": "󰓓",
   "menus.dashboard.shortcuts.left.shortcut4.command": "steam",
-  "menus.dashboard.shortcuts.left.shortcut4.tooltip": "Steam"
+  "menus.dashboard.shortcuts.left.shortcut4.tooltip": "Steam",
+  "theme.bar.location": "top",
+  "theme.bar.buttons.padding_x": "0.7rem",
+  "theme.bar.buttons.innerRadiusMultiplier": "0.4"
 }

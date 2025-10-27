@@ -79,6 +79,7 @@ alias la='eza -la'
 alias ..='cd ..'
 alias vpnu="nmcli connection up us-free-1.protonvpn.udp"
 alias vpnd="nmcli connection down us-free-1.protonvpn.udp"
+alias freecad="QT_QPA_PLATFORM=xcb freecad"
 
 
 # environment variables

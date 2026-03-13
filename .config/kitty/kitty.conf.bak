@@ -1324,7 +1324,7 @@ window_padding_width 0 4
 
 #: The foreground and background colors.
 
-background_opacity 0.8
+background_opacity 0.6
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -2790,9 +2790,3 @@ background_opacity 0.8
 #: }}}
 
 #: }}}
-
-
-# BEGIN_KITTY_THEME
-# Catppuccin-Mocha
-include current-theme.conf
-# END_KITTY_THEME

@@ -17,6 +17,7 @@
         "volume",
         "network",
         "bluetooth",
+        "hyprsunset",
         "systray",
         "clock",
         "notifications"
@@ -35,6 +36,7 @@
         "volume",
         "network",
         "bluetooth",
+        "hyprsunset",
         "systray",
         "clock",
         "notifications"
@@ -461,5 +463,6 @@
   "menus.dashboard.shortcuts.left.shortcut4.tooltip": "Steam",
   "theme.bar.location": "top",
   "theme.bar.buttons.padding_x": "0.7rem",
-  "theme.bar.buttons.innerRadiusMultiplier": "0.4"
+  "theme.bar.buttons.innerRadiusMultiplier": "0.4",
+  "bar.customModules.hyprsunset.temperature": "3000k"
 }

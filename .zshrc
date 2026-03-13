@@ -15,7 +15,7 @@ compinit
 # prezto theme
 autoload -Uz promptinit
 promptinit
-prompt skwp
+prompt starship
 
 
 # zoxide
@@ -70,17 +70,32 @@ function open() {
 }
 
 
+function brightness() {
+    if [ -z "$1" ]; then
+        echo "usage: brightness {display number} [0-100]"
+        return 1
+    fi
+    if [ -z "$2" ]; then
+        ( set +m; ddcutil --display 1 setvcp 10 "$1" > /dev/null 2>&1 & )
+        ( set +m; ddcutil --display 2 setvcp 10 "$1" > /dev/null 2>&1 & )
+    else 
+        ddcutil --display "$1" setvcp 10 "$2"
+    fi
+}
+
+
 # aliases
 alias win="systemctl reboot --boot-loader-entry=auto-windows"
-alias o='open'
-alias ls='eza'
-alias ll='eza -l'
-alias la='eza -la'
-alias ..='cd ..'
+alias o="open"
+alias ls="eza"
+alias ll="eza -l"
+alias la="eza -la"
+alias ..="cd .."
 alias vpnu="nmcli connection up us-free-1.protonvpn.udp"
 alias vpnd="nmcli connection down us-free-1.protonvpn.udp"
 alias freecad="QT_QPA_PLATFORM=xcb freecad"
 alias ytdl="youtube-dl"
+alias b="brightness"
 
 
 # environment variables

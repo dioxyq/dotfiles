@@ -15,6 +15,7 @@
       ],
       "right": [
         "volume",
+        "microphone",
         "network",
         "bluetooth",
         "hyprsunset",
@@ -34,6 +35,7 @@
       ],
       "right": [
         "volume",
+        "microphone",
         "network",
         "bluetooth",
         "hyprsunset",
@@ -464,5 +466,11 @@
   "theme.bar.location": "top",
   "theme.bar.buttons.padding_x": "0.7rem",
   "theme.bar.buttons.innerRadiusMultiplier": "0.4",
-  "bar.customModules.hyprsunset.temperature": "3000k"
+  "bar.customModules.hyprsunset.temperature": "3000k",
+  "theme.bar.buttons.volume.enableBorder": false,
+  "bar.volume.label": true,
+  "theme.bar.buttons.modules.microphone.enableBorder": false,
+  "bar.customModules.microphone.label": false,
+  "bar.customModules.microphone.rightClick": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+  "bar.volume.rightClick": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 }

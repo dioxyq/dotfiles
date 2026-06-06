@@ -335,16 +335,6 @@ animations {
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
 
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -352,6 +342,14 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"zen-browser$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+// Steam "friend is playing" popup: bottom right
+window-rule {
+    match app-id=r#"^steam$"# title="^notificationtoasts"
+    open-floating true
+    open-focused false
+    default-floating-position x=5 y=5 relative-to="bottom-right"
 }
 
 // Example: block out two password managers from screen capture.
@@ -386,7 +384,7 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+Slash hotkey-overlay-title="Show Hotkey Overlay" { show-hotkey-overlay; }
 
     // launch applications
     Mod+R hotkey-overlay-title="Launch an Application: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
@@ -448,7 +446,7 @@ binds {
     Mod+Shift+X hotkey-overlay-title="Noctalia: toggle bar" { spawn-sh "qs -c noctalia-shell ipc call bar toggle"; }
     Mod+Ctrl+X hotkey-overlay-title="Noctalia: toggle settings" { spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
 
-    Mod+Q repeat=false { close-window; }
+    Mod+Q repeat=false hotkey-overlay-title="Close Focused Window" { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -481,21 +479,13 @@ binds {
     Mod+Ctrl+End  { move-column-to-last; }
 
     Mod+Shift+Left  { focus-monitor-left; }
-    // Mod+Shift+Down  { focus-monitor-down; }
-    // Mod+Shift+Up    { focus-monitor-up; }
     Mod+Shift+Right { focus-monitor-right; }
     Mod+Shift+H     { focus-monitor-left; }
-    // Mod+Shift+J     { focus-monitor-down; }
-    // Mod+Shift+K     { focus-monitor-up; }
     Mod+Shift+L     { focus-monitor-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    // Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
     Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
@@ -508,19 +498,13 @@ binds {
 
     Mod+Shift+J        { focus-workspace-down; }
     Mod+Shift+K        { focus-workspace-up; }
-    Mod+Page_Down      { focus-workspace-down; }
-    Mod+Page_Up        { focus-workspace-up; }
     Mod+Shift+Ctrl+J   { move-column-to-workspace-down; }
     Mod+Shift+Ctrl+K   { move-column-to-workspace-up; }
-    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
 
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+Alt+J     { move-workspace-down; }
     Mod+Shift+Alt+K     { move-workspace-up; }
 
@@ -583,39 +567,37 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+BracketLeft  hotkey-overlay-title="Consume Or Expel Window Left" { consume-or-expel-window-left; }
+    Mod+BracketRight hotkey-overlay-title="Consume Or Expel Window Right" { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Mod+Comma  { consume-window-into-column; }
+    Mod+Comma  hotkey-overlay-title="Consume Window Into Column From Right" { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Mod+Period { expel-window-from-column; }
+    Mod+Period hotkey-overlay-title="Consume Window Into Column From Right" { expel-window-from-column; }
 
     // Cycle through widths set in preset-column-widths.
-    Mod+A { switch-preset-column-width; }
-    // Cycling through the presets in reverse order is also possible.
-    Mod+Shift+A { switch-preset-column-width-back; }
+    Mod+A hotkey-overlay-title="Cycle Through Preset Column Widths" { switch-preset-column-width; }
 
-    Mod+Ctrl+Shift+A { switch-preset-window-height; }
-    Mod+Ctrl+A { reset-window-height; }
+    Mod+Shift+A hotkey-overlay-title="Cycle Through Preset Window Heights" { switch-preset-window-height; }
+    Mod+Ctrl+A hotkey-overlay-title="Reset Window Height" { reset-window-height; }
 
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+F hotkey-overlay-title="Maximise Column" { maximize-column; }
+    Mod+Shift+F hotkey-overlay-title="Fullscreen Window" { fullscreen-window; }
 
     // While maximize-column leaves gaps and borders around the window,
     // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
     // This bind corresponds to normal window maximizing,
     // e.g. by double-clicking on the titlebar.
-    Mod+Ctrl+F { maximize-window-to-edges; }
+    Mod+Ctrl+F hotkey-overlay-title="Maximise Window To Screen Edges" { maximize-window-to-edges; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
-    Mod+Shift+Ctrl+F { expand-column-to-available-width; }
+    Mod+Shift+Ctrl+F hotkey-overlay-title="Expand Column To Available Width" { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
+    Mod+C hotkey-overlay-title="Center Column" { center-column; }
 
     // Center all fully visible columns on screen.
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Ctrl+C hotkey-overlay-title="Center Visible Columns" { center-visible-columns; }
 
     // Finer width adjustments.
     // This command can also:
@@ -625,21 +607,21 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Minus hotkey-overlay-title="Expand Column Width" { set-column-width "-10%"; }
+    Mod+Equal hotkey-overlay-title="Shrink Column Width" { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+Minus hotkey-overlay-title="Expand Window Height" { set-window-height "-10%"; }
+    Mod+Shift+Equal hotkey-overlay-title="Shrink Window Height" { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+W       { toggle-window-floating; }
-    Mod+Shift+W { switch-focus-between-floating-and-tiling; }
+    Mod+W       hotkey-overlay-title="Toggle Window Floating" { toggle-window-floating; }
+    Mod+Shift+W hotkey-overlay-title="Toggle Floating/Tiling Focus" { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
-    Mod+Apostrophe { toggle-column-tabbed-display; }
+    Mod+Apostrophe hotkey-overlay-title="Toggle Column Stack/Tabbed Layout" { toggle-column-tabbed-display; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have
@@ -649,13 +631,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
-    Mod+S { screenshot-screen; }
-    Mod+Shift+S { screenshot; }
-    Mod+Ctrl+S { screenshot-window; }
+    Mod+S       hotkey-overlay-title="Screenshot: screen" { screenshot-screen; }
+    Mod+Shift+S hotkey-overlay-title="Screenshot: selection" { screenshot; }
+    Mod+Ctrl+S  hotkey-overlay-title="Screenshot: window" { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -665,13 +643,9 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-    // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
+    Mod+Escape hotkey-overlay-title="Toggle Keyboard Shorcuts Inhibiting" allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+Ctrl+M hotkey-overlay-title="Sleep Monitors" { power-off-monitors; }
 }

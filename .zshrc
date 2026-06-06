@@ -100,3 +100,7 @@ alias b="brightness"
 
 # environment variables
 EDITOR=nvim
+
+
+# comp3891 bins
+source /home/ava/UNSW/comp3891-26T2/os161-utils/os161-bin-aliases

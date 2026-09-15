@@ -103,23 +103,10 @@ polkit_position = "auto"
 builtin = "Catppuccin"
 
 [wallpaper]
-directory = "/home/ava/Pictures/Wallpapers/Hollow Knight"
 transition = [ "fade" ]
 
     [wallpaper.automation]
     enabled = true
-
-    [wallpaper.default]
-    path = "/home/ava/Pictures/Wallpapers/Hollow Knight/hollow-knight-5.jpg"
-
-    [wallpaper.last]
-    path = "/home/ava/Pictures/Wallpapers/Hollow Knight/hollow-knight-5.jpg"
-
-    [wallpaper.monitors.DP-3]
-    path = "/home/ava/Pictures/Wallpapers/Hollow Knight/hollow-knight-5.jpg"
-
-    [wallpaper.monitors.HDMI-A-1]
-    path = "/home/ava/Pictures/Wallpapers/Hollow Knight/hollow-knight-5.jpg"
 
 [widget.network]
 show_label = false

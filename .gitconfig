@@ -3,3 +3,5 @@
 	name = Ava Cameron
 [init]
 	defaultBranch = main
+[color]
+	ui = auto

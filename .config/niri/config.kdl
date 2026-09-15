@@ -118,6 +118,10 @@ output "DP-3" {
     // automatically.
     position x=0 y=0
 
+    variable-refresh-rate on-demand=true
+
+    focus-at-startup
+
     hot-corners {
         off
     }
@@ -128,6 +132,7 @@ output "HDMI-A-1" {
     scale 1
     transform "normal"
     position x=2560 y=0
+    variable-refresh-rate on-demand=true
     hot-corners {
         off
     }
@@ -295,7 +300,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -404,14 +409,15 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Show Hotkey Overlay" { show-hotkey-overlay; }
 
     // launch applications
-    Mod+R hotkey-overlay-title="Launch an Application: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+R hotkey-overlay-title="Launch an Application: noctalia launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+Alt+X hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+Alt+F hotkey-overlay-title="Open File Manager: dolphin" { spawn "dolphin"; }
     Mod+Alt+S hotkey-overlay-title="Open System Monitor: btop++" { spawn "kitty" "btop"; }
     Mod+Alt+B hotkey-overlay-title="Open Browser: zen-browser" { spawn "zen-browser"; }
     Mod+Alt+D hotkey-overlay-title="Open Discord: vesktop" { spawn "vesktop"; }
     Mod+Alt+G hotkey-overlay-title="Open Steam" { spawn "steam"; }
-    Mod+Alt+T hotkey-overlay-title="Open Music Player: spotify" { spawn "spotify-launcher"; }
+    Mod+Alt+V hotkey-overlay-title="Open Music Player: spotify" { spawn "spotify-launcher"; }
+    Mod+Alt+Ctrl+V hotkey-overlay-title="Open Music Player: spotify" { spawn "kitty" "spotify_player"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -446,8 +452,10 @@ binds {
     Shift+F5 hotkey-overlay-title="Media: Next" { spawn-sh "playerctl next"; }
 
     // Brightness control binds
-    Shift+F6 hotkey-overlay-title="Decrease Brightness" { spawn-sh "qs -c noctalia-shell ipc call brightness decrease"; }
-    Shift+F7 hotkey-overlay-title="Increase Brightness" { spawn-sh "qs -c noctalia-shell ipc call brightness increase"; }
+    Shift+F6 hotkey-overlay-title="Decrease Brightness" { spawn-sh "noctalia msg brightness-down all"; }
+    Shift+F7 hotkey-overlay-title="Increase Brightness" { spawn-sh "noctalia msg brightness-up all"; }
+    Shift+Ctrl+F6 hotkey-overlay-title="Decrease Brightness (current monitor)" { spawn-sh "noctalia msg brightness-down"; }
+    Shift+Ctrl+F7 hotkey-overlay-title="Increase Brightness (current monitor)" { spawn-sh "noctalia msg brightness-up"; }
 
     // Mute binds
     Mod+V hotkey-overlay-title="Mute Microphone" { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
@@ -459,9 +467,9 @@ binds {
     Mod+Z repeat=false hotkey-overlay-title="Toggle Overview" { toggle-overview; }
 
     // Noctalia binds
-    Mod+X hotkey-overlay-title="Noctalia: toggle control center" { spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"; }
-    Mod+Shift+X hotkey-overlay-title="Noctalia: toggle bar" { spawn-sh "qs -c noctalia-shell ipc call bar toggle"; }
-    Mod+Ctrl+X hotkey-overlay-title="Noctalia: toggle settings" { spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
+    Mod+X hotkey-overlay-title="Noctalia: toggle control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Shift+X hotkey-overlay-title="Noctalia: toggle bar" { spawn-sh "noctalia msg bar-toggle"; }
+    Mod+Ctrl+X hotkey-overlay-title="Noctalia: toggle settings" { spawn-sh "noctalia msg settings-toggle"; }
 
     Mod+Q repeat=false hotkey-overlay-title="Close Focused Window" { close-window; }
 
@@ -613,6 +621,8 @@ binds {
 
     Mod+C hotkey-overlay-title="Center Column" { center-column; }
 
+    Mod+Shift+C hotkey-overlay-title="Center And Resize Floating Window" { spawn "sh" "-c" "if niri msg focused-window | grep -q 'Is floating: no'; then niri msg action toggle-window-floating; fi && niri msg action set-column-width 50% && niri msg action set-window-height 50% && niri msg action center-column"; }
+
     // Center all fully visible columns on screen.
     Mod+Ctrl+C hotkey-overlay-title="Center Visible Columns" { center-visible-columns; }
 
@@ -648,9 +658,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Mod+S       hotkey-overlay-title="Screenshot: screen" { screenshot-screen; }
-    Mod+Shift+S hotkey-overlay-title="Screenshot: selection" { screenshot; }
-    Mod+Ctrl+S  hotkey-overlay-title="Screenshot: window" { screenshot-window; }
+    Mod+S       hotkey-overlay-title="Screenshot: screen" { screenshot-screen show-pointer=false; }
+    Mod+Shift+S hotkey-overlay-title="Screenshot: selection" { screenshot show-pointer=false; }
+    Mod+Ctrl+S  hotkey-overlay-title="Screenshot: window" { screenshot-window show-pointer=false; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

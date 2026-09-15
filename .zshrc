@@ -17,6 +17,8 @@ autoload -Uz promptinit
 promptinit
 prompt starship
 
+export TERMINAL=/usr/bin/kitty 
+
 
 # zoxide
 eval "$(zoxide init zsh)"
@@ -103,4 +105,8 @@ EDITOR=nvim
 
 
 # comp3891 bins
-source /home/ava/UNSW/comp3891-26T2/os161-utils/os161-bin-aliases
+# source /home/ava/UNSW/comp3891-26T2/os161-utils/os161-bin-aliases
+
+# comp6131 environment
+# export SVF_DIR=/home/ava/UNSW/comp6131-26T2/SVF
+# source /home/ava/UNSW/comp6131-26T2/Software-Security-Analysis/env.sh
